@@ -25,11 +25,11 @@
                 {% else %}
                     <form action="{{ url_for('play', row=i, col=j) }}" method="post">
                         <button type="submit">-</button>
-                    </form>
+                    </from>
                 {% endif %}
             </td>
             {% endfor %}
-        </tr>
+        </td>
         {% endfor %}
     </table>
     <form action="{{ url_for('reset') }}" method="post">
