@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    {% if winner %}
+        <p>Player {{ winner }} wins!</p>
+    {% elif draw %}
+        <p>It's a draw!</p>
+    {% else %}
+        <p>Current player: {{ player }}</p>
+    {% endif %}
+    <table>
+        {% for i in range(3) %}
+        <tr>
+            {% for j in range(3) %}
+            <td>
+                {% if board[i][j] %}
+                    {{ board[i][j] }}
+                {% else %}
+                    <form action="{{ url_for('play', row=i, col=j) }}" method="post">
+                        <button type="submit">-</button>
+                    </form>
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <form action="{{ url_for('reset') }}" method="post">
+        <button type="submit">Reset Game</button>
+    </form>
+</body>
+</html>
